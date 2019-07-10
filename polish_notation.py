@@ -49,7 +49,7 @@ def evaluate(exp):
     exp.reverse()
     stack = list()
     for i in exp:
-        if is_operand(i):    
+        if is_operand(i):
             stack.append(i)
         else:
             a = stack.pop()
