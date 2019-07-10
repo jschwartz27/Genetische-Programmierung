@@ -46,17 +46,19 @@ def generate():
 
 def evaluate(exp):
     exp = list(exp)
+    exp.reverse()
     stack = list()
-    r = list(range(len(exp)))
-    r.reverse()
-    for i in r:
-        if is_operand(exp[i]):
-            stack.append(exp[i])
+    for i in exp:
+        if is_operand(i):    
+            stack.append(i)
         else:
             a = stack.pop()
             b = stack.pop()
-            val = eval("{}{}{}".format(a, exp[i], b))
-            stack.append(val)
+            try:
+                stack.append(eval("{}{}{}".format(a, i, b)))
+            except:
+                return "Cannot divide by zero"
+            # stack.append(val)
 
     return stack[0]
 
