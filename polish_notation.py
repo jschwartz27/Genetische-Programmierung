@@ -58,7 +58,6 @@ def evaluate(exp):
                 stack.append(eval("{}{}{}".format(a, i, b)))
             except:
                 return "Cannot divide by zero"
-            # stack.append(val)
 
     return stack[0]
 
