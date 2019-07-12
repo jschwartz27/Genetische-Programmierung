@@ -16,35 +16,23 @@ def r_operator():
     return random.choice(operators)
 
 
-def generate_L():
-    tree = list()
-    if random.random() < .5:
-        return r_operand()
-    else:
-        tree.extend([r_operator(), generate_L(), generate_L()])
-
-    return tree
-
-
-def evaluate_L(exp):
-    for i in range(1, 3):
-        if len(exp[i]) != 1:
-            exp[i] = evaluate(exp[i])
-
-    return eval("{}{}{}".format(exp[1], exp[0], exp[2]))
-
-
-def generate():
+def generate(depth, p):
     tree = ""
-    if random.random() < .5:
+    if depth > 50:
+        p = 1
+
+    if random.random() < p:
         return r_operand()
     else:
-        tree += r_operator() + generate() + generate()
+        depth += 1
+        tree += r_operator() + generate(depth, p) + generate(depth, p)
 
     return tree
 
 
 def evaluate(exp):
+    if exp.isdigit():
+        return float(exp)
     exp = list(exp)
     exp.reverse()
     stack = list()
@@ -57,13 +45,14 @@ def evaluate(exp):
             try:
                 stack.append(eval("{}{}{}".format(a, i, b)))
             except:
-                return "Cannot divide by zero"
+                # return "Cannot divide by zero"
+                stack.append(0)
 
-    return stack[0]
+    return float(stack[0])
 
 
 def main():
-    exp = generate()
+    exp = generate(0, .5)
     if len(exp) == 1:
         solution = exp
     else:
