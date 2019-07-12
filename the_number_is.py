@@ -46,8 +46,6 @@ def evolve(pop, best_Fitness, fit_2, pop_size, goal):
         
         print("\tBest_Fitness:: {}".format(best_Fitness))
         print("Generation_{}".format(gen))
-    
-
 
 
 def main():
