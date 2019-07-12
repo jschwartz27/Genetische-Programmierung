@@ -44,8 +44,10 @@ def evolve(pop, best_Fitness, fit_2, pop_size, goal):
             fit_2 = s
             second = new_o_pop[1]
         
-        print("\tBest_Fitness:: {}".format(best_Fitness))
+        print("\n\tBest_Fitness:: {}".format(best_Fitness))
         print("Generation_{}".format(gen))
+
+    return (best_Fitness, the_Best)
 
 
 def main():
@@ -55,7 +57,9 @@ def main():
 
     pop = gen_pop(pop_size)
     ordered_pop, best_fit, fit_2 = gen_fit(pop, n)
-    evolve(ordered_pop, best_fit, fit_2, pop_size, n)
+    der_Übermensch = evolve(ordered_pop, best_fit, fit_2, pop_size, n)
+
+    print("\n{}".format(der_Übermensch[1]))
 
 if __name__ == '__main__':
     main()
