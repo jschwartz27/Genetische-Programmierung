@@ -1,11 +1,27 @@
 import random
+from operator import add, sub, mul
 
 operators = "+-*/"
 operands = "123456789"
 
 
-def is_operand(val):
-    return val in operands
+def exp(a, b):
+    return a**b
+
+
+def div(a, b):
+    if b == 0:
+        return 0
+    else:
+        return a / b
+
+ops = {
+    "+": add,
+    "-": sub,
+    "*": mul,
+    "/": div,
+    "$": exp
+}
 
 
 def r_operand():
@@ -16,16 +32,16 @@ def r_operator():
     return random.choice(operators)
 
 
-def generate(depth, p):
+def generate(depth):
     tree = ""
-    if depth > 50:
-        p = 1
+    if depth > 3:
+        return r_operand()
 
-    if random.random() < p:
+    if random.random() < .5:
         return r_operand()
     else:
         depth += 1
-        tree += r_operator() + generate(depth, p) + generate(depth, p)
+        tree += r_operator() + generate(depth) + generate(depth)
 
     return tree
 
@@ -36,23 +52,28 @@ def evaluate(exp):
     exp = list(exp)
     exp.reverse()
     stack = list()
-    for i in exp:
-        if is_operand(i):
-            stack.append(i)
+    for val in exp:
+        if val in operands:
+            stack.append(val)
         else:
-            a = stack.pop()
-            b = stack.pop()
+            a = float(stack.pop())
+            b = float(stack.pop())
             try:
-                stack.append(eval("{}{}{}".format(a, i, b)))
+                stack.append(ops[val](a, b))
             except:
-                # return "Cannot divide by zero"
-                stack.append(0)
+                # TODO this must be fixed
+                # print(a, b, val)
+                return 10101010101
 
     return float(stack[0])
 
 
+def find_subtree(exp, index):
+    pass
+
+
 def main():
-    exp = generate(0, .5)
+    exp = generate(0)
     if len(exp) == 1:
         solution = exp
     else:
