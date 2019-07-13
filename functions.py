@@ -5,10 +5,6 @@ operators = "+-*/"
 operands = "123456789"
 
 
-def exp(a, b):
-    return a**b
-
-
 def div(a, b):
     if b == 0:
         return 0
@@ -19,8 +15,7 @@ ops = {
     "+": add,
     "-": sub,
     "*": mul,
-    "/": div,
-    "$": exp
+    "/": div
 }
 
 
