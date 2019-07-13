@@ -27,23 +27,26 @@ def evolve(pop, best_Fitness, fit_2, pop_size, n_gens, elite_perc, goal):
             next_gen.extend(genetik.crossover(random.sample(elite, 2)))
 
         new_o_pop, pop_best, s = gen_fit(next_gen, goal)
-        
+
         if pop_best < best_Fitness:
             best_Fitness = pop_best
             the_Best = new_o_pop[0] 
         if s < fit_2:
             fit_2 = s
             second = new_o_pop[1]
-        
-        print("\n\tBest_Fitness:: {}".format(best_Fitness))
         print("Generation_{}".format(gen))
+        print("\n\tBest_Fitness:: {}".format(best_Fitness))
+        print("\t{}".format(the_Best))
+
+        if best_Fitness == 0:
+            break
 
     return (best_Fitness, the_Best)
 
 
 def main():
     pop_size = 1000
-    n_gens = 100
+    n_gens = 2000
     elite_perc = .1
     n = random.randrange(500, 5001)
     print("The number is:: {}".format(n))
@@ -53,7 +56,11 @@ def main():
     der_Übermensch = evolve(ordered_pop, best_fit, fit_2, pop_size,
                             n_gens, elite_perc, n)
 
-    print("\n{}".format(der_Übermensch[1]))
+    if der_Übermensch[0] == 0:
+        print("\n{} == {}".format(der_Übermensch[1], n))
+    else:
+        print("\n{}".format(der_Übermensch[1]))
+        print("\tFinal_fitness:: ".format(der_Übermensch[0]))
 
 if __name__ == '__main__':
     main()
