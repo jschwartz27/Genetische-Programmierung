@@ -3,7 +3,6 @@ import functions as f
 import genetic_functions as genetik
 
 
-
 def gen_fit(pop, goal):
     evals = list(map(lambda x: f.evaluate(x), pop))
     fits = list(map(lambda x: abs(goal - x), evals))
