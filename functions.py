@@ -89,14 +89,6 @@ def find_subtree(exp, index):
 def main():
     exp = generate(0)
     if len(exp) == 1:
-        print("BLEH")
-    inds = [i for i, x in enumerate(exp) if x in "+-*/"]
-    index = random.choice(inds)
-    print(exp)
-    print(index)
-    print(find_subtree(exp, index))
-    quit()
-    if len(exp) == 1:
         solution = exp
     else:
         solution = evaluate(exp)
