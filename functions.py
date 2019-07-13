@@ -82,7 +82,7 @@ def find_subtree(exp, index):
             n += 1
         else:
             n -= 1
-    
+
     return "".join(stack)
 
 
