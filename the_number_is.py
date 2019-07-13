@@ -62,7 +62,7 @@ def main():
         print("\n{} == {}".format(der_Übermensch[1], n))
     else:
         print("\n{}".format(der_Übermensch[1]))
-        print("\tFinal_fitness:: ".format(der_Übermensch[0]))
+        print("\tFinal_fitness:: {}".format(der_Übermensch[0]))
 
 if __name__ == '__main__':
     main()
