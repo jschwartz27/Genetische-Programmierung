@@ -5,6 +5,10 @@ operators = "+-*/"
 operands = "123456789"
 
 
+def exp(a, b):
+    return a**b
+
+
 def div(a, b):
     if b == 0:
         return 0
@@ -15,8 +19,13 @@ ops = {
     "+": add,
     "-": sub,
     "*": mul,
-    "/": div
+    "/": div,
+    "$": exp
 }
+
+
+def is_operator(val):
+    return val in operators
 
 
 def r_operand():
@@ -63,11 +72,30 @@ def evaluate(exp):
 
 
 def find_subtree(exp, index):
-    pass
+    stack = [exp[index]]
+    n = 2
+    for val in exp[index+1:]:
+        if n == 0:
+            break
+        stack.append(val)
+        if is_operator(val):
+            n += 1
+        else:
+            n -= 1
+    
+    return "".join(stack)
 
 
 def main():
     exp = generate(0)
+    if len(exp) == 1:
+        print("BLEH")
+    inds = [i for i, x in enumerate(exp) if x in "+-*/"]
+    index = random.choice(inds)
+    print(exp)
+    print(index)
+    print(find_subtree(exp, index))
+    quit()
     if len(exp) == 1:
         solution = exp
     else:
