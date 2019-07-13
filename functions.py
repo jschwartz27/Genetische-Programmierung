@@ -62,7 +62,6 @@ def evaluate(exp):
                 stack.append(ops[val](a, b))
             except:
                 # TODO this must be fixed
-                # print(a, b, val)
                 return 10101010101
 
     return float(stack[0])
