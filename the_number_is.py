@@ -34,8 +34,8 @@ def evolve(pop, best_Fitness, fit_2, pop_size, n_gens, elite_perc, goal):
         if s < fit_2:
             fit_2 = s
             second = new_o_pop[1]
-        print("Generation_{}".format(gen))
-        print("\n\tBest_Fitness:: {}".format(best_Fitness))
+        print("\nGeneration_{}".format(gen))
+        print("\tBest_Fitness:: {}".format(best_Fitness))
         print("\t{}".format(the_Best))
 
         if best_Fitness == 0:
