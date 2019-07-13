@@ -20,7 +20,13 @@ def crossover(lovers):
 
 
 def mutation(chrom):
-    pass
+    inds = [i for i, x in enumerate(chrom) if x in "+-*/"]
+    index = random.choice(inds)
+    sub_tree = find_subtree(chrom, index)
+    mut_tree = generate(0)
+
+    return (chrom[:index] + mut_tree +
+            chrom[index+len(sub_tree):])
 
 
 def gen_pop(pop_size):
