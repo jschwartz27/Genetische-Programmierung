@@ -30,7 +30,7 @@ def evolve(pop, best_Fitness, fit_2, pop_size, n_gens, elite_perc, goal):
 
         if pop_best < best_Fitness:
             best_Fitness = pop_best
-            the_Best = new_o_pop[0] 
+            the_Best = new_o_pop[0]
         if s < fit_2:
             fit_2 = s
             second = new_o_pop[1]
@@ -53,8 +53,10 @@ def main():
 
     pop = genetik.gen_pop(pop_size)
     ordered_pop, best_fit, fit_2 = gen_fit(pop, n)
-    der_Übermensch = evolve(ordered_pop, best_fit, fit_2, pop_size,
-                            n_gens, elite_perc, n)
+    der_Übermensch = evolve(
+        ordered_pop, best_fit, fit_2, pop_size,
+        n_gens, elite_perc, n
+    )
 
     if der_Übermensch[0] == 0:
         print("\n{} == {}".format(der_Übermensch[1], n))
