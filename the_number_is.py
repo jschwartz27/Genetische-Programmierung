@@ -3,14 +3,8 @@ import functions as f
 import genetic_functions as genetik
 
 
-def gen_pop(pop_size):
-    return list(map(lambda x: f.generate(0), range(pop_size)))
-
 
 def gen_fit(pop, goal):
-    for i in pop[:10]:
-        print(i)
-        print()
     evals = list(map(lambda x: f.evaluate(x), pop))
     fits = list(map(lambda x: abs(goal - x), evals))
     fit_pop = list(zip(fits, pop))
@@ -20,9 +14,7 @@ def gen_fit(pop, goal):
     return ordered_pop, fit_pop[0][0], fit_pop[1][0]
 
 
-def evolve(pop, best_Fitness, fit_2, pop_size, goal):
-    n_gens = 100
-    elite_perc = .1
+def evolve(pop, best_Fitness, fit_2, pop_size, n_gens, elite_perc, goal):
     the_Best = pop[0]
     second = pop[1]
     print("Generation_0::")
@@ -52,12 +44,15 @@ def evolve(pop, best_Fitness, fit_2, pop_size, goal):
 
 def main():
     pop_size = 1000
+    n_gens = 100
+    elite_perc = .1
     n = random.randrange(500, 5001)
     print("The number is:: {}".format(n))
 
-    pop = gen_pop(pop_size)
+    pop = genetik.gen_pop(pop_size)
     ordered_pop, best_fit, fit_2 = gen_fit(pop, n)
-    der_Übermensch = evolve(ordered_pop, best_fit, fit_2, pop_size, n)
+    der_Übermensch = evolve(ordered_pop, best_fit, fit_2, pop_size,
+                            n_gens, elite_perc, n)
 
     print("\n{}".format(der_Übermensch[1]))
 
