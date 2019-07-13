@@ -27,7 +27,10 @@ def evolve(pop, best_Fitness, fit_2, pop_size, n_gens, mut_rate,
         while len(next_gen) < pop_size:
             crossed_lovers = genetik.crossover(random.sample(elite, 2))
             for i in range(len(crossed_lovers)):
-                if random.random() < mut_rate:
+                r = random.random()
+                if r < mut_rate:
+                    crossed_lovers[i] = genetik.simple_mut(crossed_lovers[i])
+                elif r < mut_rate + .05:
                     crossed_lovers[i] = genetik.mutation(crossed_lovers[i])
             next_gen.extend(crossed_lovers)
 
@@ -53,7 +56,7 @@ def evolve(pop, best_Fitness, fit_2, pop_size, n_gens, mut_rate,
 def main():
     pop_size = 1000
     n_gens = 2000
-    mut_rate = .05
+    mut_rate = .1
     elite_perc = .1
     n = random.randrange(500, 5001)
     print("The number is:: {}".format(n))
