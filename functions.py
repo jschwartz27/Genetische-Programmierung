@@ -62,11 +62,7 @@ def evaluate(exp):
         else:
             a = float(stack.pop())
             b = float(stack.pop())
-            try:
-                stack.append(ops[val](a, b))
-            except:
-                # TODO this must be fixed
-                return 10101010101
+            stack.append(ops[val](a, b))
 
     return float(stack[0])
 
