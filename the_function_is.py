@@ -27,10 +27,10 @@ def create_samples(func, n_vs):
     ns = "xyz"
     sample_dict = dict()
     for i in range(sample_n):
-        vs = {j: random.choice(range(1,21)) for j in ns[:n_vs]}
+        vs = {j: random.choice(range(1, 21)) for j in ns[:n_vs]}
         e = f.evaluate_Vs(func, vs)
         sample_dict[str(vs)] = e
-    
+
     return sample_dict
 
 
@@ -43,7 +43,7 @@ def main():
     n_gens = 2000
     mut_rate = .1
     elite_perc = .1
-    n_vs = random.choice(range(1,4))
+    n_vs = random.choice(range(1, 4))
     function = random.choice(functions[str(n_vs)])
     sample_dict = create_samples(function, n_vs)
 
