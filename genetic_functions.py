@@ -12,9 +12,9 @@ def crossover(lovers):
         sub_trees.append(f.find_subtree(lover, index))
 
     l1 = (lovers[0][:indices[0]] + sub_trees[1] +
-          lovers[0][indices[0]+len(sub_trees[0]):])
+          lovers[0][indices[0] + len(sub_trees[0]):])
     l2 = (lovers[1][:indices[1]] + sub_trees[0] +
-          lovers[1][indices[1]+len(sub_trees[1]):])
+          lovers[1][indices[1] + len(sub_trees[1]):])
 
     return [l1, l2]
 
