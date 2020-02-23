@@ -13,16 +13,16 @@ def gen_fit(pop, goal):
     return ordered_pop, fit_pop[0][0], fit_pop[1][0]
 
 
-def evolve(pop, best_Fitness, fit_2, pop_size, n_gens, mut_rate,
+def evolve(pop, best_fitness, fit_2, pop_size, n_gens, mut_rate,
            elite_perc, goal):
-    the_Best = pop[0]
+    the_best = pop[0]
     second = pop[1]
     print("Generation_0::")
-    print("\tBest_Fitness:: {}".format(best_Fitness))
+    print("\tBest_Fitness:: {}\n".format(best_fitness))
 
     l = int(len(pop)*elite_perc)
     for gen in range(1, n_gens + 1):
-        next_gen = [the_Best, second]
+        next_gen = [the_best, second]
         elite = pop[:l]
         while len(next_gen) < pop_size:
             crossed_lovers = genetik.crossover(random.sample(elite, 2))
@@ -36,25 +36,23 @@ def evolve(pop, best_Fitness, fit_2, pop_size, n_gens, mut_rate,
 
         new_o_pop, pop_best, s = gen_fit(next_gen, goal)
 
-        if pop_best < best_Fitness:
-            best_Fitness = pop_best
-            the_Best = new_o_pop[0]
+        if pop_best < best_fitness:
+            best_fitness = pop_best
+            the_best = new_o_pop[0]
         if s < fit_2:
             fit_2 = s
             second = new_o_pop[1]
 
-        print("\nGeneration_{}".format(gen))
-        print("\tBest_Fitness:: {}".format(best_Fitness))
-        print("\t{}".format(the_Best))
-
-        if best_Fitness == 0:
+        print("Gen:: {} Fitness:: {} Eq:: {}{}\r"
+            .format(gen, round(best_fitness, 3), the_best, " "*40), end="")
+        if best_fitness == 0:
             break
 
-    return (best_Fitness, the_Best)
+    return (best_fitness, the_best)
 
 
 def main():
-    pop_size = 1000
+    pop_size = 2000
     n_gens = 2000
     mut_rate = .1
     elite_perc = .1
