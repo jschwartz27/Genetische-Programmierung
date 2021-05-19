@@ -1,3 +1,4 @@
+import yaml
 import random
 from operator import add, sub, mul
 
@@ -82,6 +83,11 @@ def find_subtree(exp, index):
     return "".join(stack)
 
 
+def load_yaml(filename: str):
+    with open(filename + ".yaml") as file:
+        return yaml.load(file, Loader=yaml.FullLoader)
+
+
 def main():
     exp = generate(0)
     if len(exp) == 1:
@@ -91,6 +97,7 @@ def main():
 
     print("Expression::\n\t{}".format(exp))
     print("Solution::\n\t{}".format(solution))
+
 
 if __name__ == '__main__':
     main()
